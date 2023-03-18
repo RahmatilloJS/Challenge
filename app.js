@@ -5,24 +5,43 @@ const number = document.querySelector('.number')
 const score = document.querySelector('.score')
 const highscore = document.querySelector('.highscore')
 const message = document.querySelector('.message')
+const body = document.querySelector('body')
 
 
 
+again.onclick = function(){
+    guess.value = ""
+    score.innerHTML = '20'
+    body.style.background = '#222'
+    message.textContent = 'Start guessing...'
+    check.classList.remove('none-dis')
+    number.textContent = '?'
+    if(counter < highscore.textContent){
+        highscore.textContent = counter
+    }
+    counter = 20
+    function getRandom2(){
+        let random = Math.floor(Math.random() * 20 + 1)
+        return random
+    }
+
+    randomNum = getRandom2()
+    console.log(randomNum);
+}
 
 function getRandom() {
     let random = Math.floor(Math.random() * 20 + 1)
     return random;
 }
 
-const randomNum = getRandom()
+let randomNum = getRandom()
 console.log(randomNum);
 let counter = 20
-const zero = 0
+let zero = 0
 
 check.onclick = function () {
     randomCheck()
     counter--
-    // console.log( typeof guess.value );
     if(guess.value == ""){
         message.innerHTML = "Write number firstly!"
     }
@@ -55,11 +74,8 @@ function randomCheck() {
         let high = highscore.innerHTML = counter
         number.innerHTML = randomNum
         check.classList.add('none-dis')
+        highscore = randomNum
     }
     
 
-}
-
-again.onclick = function () {
-    location.reload()
 }
